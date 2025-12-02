@@ -1,0 +1,25 @@
+name: md
+channels:
+  - conda-forge
+  - bioconda
+  - anaconda
+  - r
+  - compbiocore
+dependencies:
+  - fastqc
+  - python=3
+  - diamond
+  - spades
+  - bbmap
+  - bowtie2
+  - seqtk
+  - samtools
+  - quast
+  - seqkit
+  - fastp
+  - ca-certificates
+  - certifi
+  - openssl
+  - unicycler
+  - dragonflye
+

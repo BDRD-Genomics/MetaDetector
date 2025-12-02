@@ -32,6 +32,7 @@ Setting Paths:
  - Paths to various directories used in MetaDetector are saved in the `md.config` file
  - The md.config file should be located in the same directory as the scripts used to run MetaDetector
  - Generic paths are currently in the file, most of which to a "databases" directory and subdirectories, but you are free to organize this as you see fit
+ - **NOTE**: Other scripts (helper, update, and database) have hard coded paths that will need to be manually modified
 
 ## Running MetaDetector
 #### Create a readlist:

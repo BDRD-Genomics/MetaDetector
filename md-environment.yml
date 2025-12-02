@@ -1,4 +1,4 @@
-name: metaDetector
+name: md
 channels:
   - r
   - anaconda

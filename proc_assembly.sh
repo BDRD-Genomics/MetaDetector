@@ -661,7 +661,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate dragonflye" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
 	echo -e "set -e" >> ${job}
 	echo -e "if [[ ! -e ${statuspath}/stage6b.finished ]]; then" >> ${job}
@@ -703,7 +703,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate dragonflye" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
 	echo -e "set -e" >> ${job}
 	echo -e "if [[ ! -e ${statuspath}/stage6c.finished ]]; then" >> ${job}
@@ -787,7 +787,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate unicycler" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
 	echo -e "set -e" >> ${job}
         echo -e "if [[ ! -e ${statuspath}/stage7b.finished ]]; then" >> ${job}
@@ -1247,7 +1247,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate diamond" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
 	echo -e "set -e" >> ${job}
 	echo -e "if [[ ! -e ${statuspath}/stage12.finished ]]; then" >> ${job}
@@ -1290,7 +1290,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate diamond" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
 	echo -e "set -e" >> ${job}
 	echo -e "if [[ ! -e ${statuspath}/stage12b.finished ]]; then" >> ${job}
@@ -1333,7 +1333,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate diamond" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
 	echo -e "set -e" >> ${job}
 	echo -e "if [[ ! -e ${statuspath}/stage12c.finished ]]; then" >> ${job}
@@ -1376,7 +1376,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate diamond" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
 	echo -e "set -e" >> ${job}
 	echo -e "if [[ ! -e ${statuspath}/stage12d.finished ]]; then" >> ${job}
@@ -1419,7 +1419,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate diamond" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
         echo -e "set -e" >> ${job}
         echo -e "if [[ ! -e ${statuspath}/stage13.finished ]]; then" >> ${job}
@@ -1462,7 +1462,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate diamond" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
         echo -e "set -e" >> ${job}
 	echo -e "if [[ ! -e ${statuspath}/stage14.finished ]]; then" >> ${job}
@@ -1504,7 +1504,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate diamond" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
         echo -e "set -e" >> ${job}
 	echo -e "if [[ ! -e ${statuspath}/stage14b.finished ]]; then" >> ${job}
@@ -1546,7 +1546,7 @@ then
 	fi
 
 	echo -e "eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)\"" >> ${job}
-        echo -e "conda activate diamond" >> ${job}
+        echo -e "conda activate md" >> ${job}
 
         echo -e "set -e" >> ${job}
         echo -e "if [[ ! -e ${statuspath}/stage15.finished ]]; then" >> ${job}

@@ -80,4 +80,8 @@ Setting Paths:
    - Status log files to bookmark successfully completed stages
 
 ## Disclaimer
-The views expressed in this article reflect the results of research conducted by the author and do not neceassrily reflect the official policy or posistion of the Department of the Navy, Department of Defense, nor the U.S Government. Several authors are military service members or federal empoyees of the United States government. This work was prepared as part of my official duties. Title 17 U.S.C. 101 defines a U.S. Goverenment work as a wrok prepared by a military service member or employee of the U.S. Government as part of that person's official duties. This work was supported by work unit number A1714 and Armed Forces Health Surveillance Division (AFHSD) Global Emerging Infections Surveillance (GEIS) Branch under P0055_23_NM.
+This work was supported by work unit number A1714.
+
+The views expressed in this article reflect the results of research conducted by the author and do not necessarily reflect the official policy or position of the Department of the Navy, Department of Defense, nor the U.S Government. Several authors are military service members or federal employees of the United States government.
+
+This work was prepared as part of their official duties. Title 17 U.S.C. 105 provides that ‘copyright protection under this title is not available for any work of the United States Government.’ Title 17 U.S.C. 101 defines a U.S. Government work as work prepared by a military service member or employee of the U.S. Government as part of that person's official duties.

@@ -12,20 +12,20 @@
 eval \"\$(command conda 'shell.bash' 'hook' 2> /dev/null)
 conda activate md
 
+# Modify paths
 md_db_dir=/path/to/databases
-scripts=/path/to/bin
+scripts=/path/to/helper_scripts
 
 # Requirements include: nr, nt and megan
 
 # Optional automated download: contaminants, rRNA and human
-
-# cd $md_db_dir/ref_genomes
-# mkdir human silva
-# wget https://edge-dl.lanl.gov/EDGE/light/human_ref_GRCh38_all.fa.gz
-# wget -cvb -O $md_db_dir/ https://www.arb-silva.de/fileadmin/silva_databases/current/Exports/SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz
-# wget -cvb -O $md_db_dir/ https://www.arb-silva.de/fileadmin/silva_databases/current/Exports/SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz
-# zcat SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz > SILVA_138.2_LSU-SSURef_NR99_tax_silva.fasta && pigz SILVA_138.2_LSU-SSURef_NR99_tax_silva.fasta
-# wget -cvb -O $md_db_dir/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz
+cd $md_db_dir/ref_genomes
+mkdir human silva
+wget https://edge-dl.lanl.gov/EDGE/light/human_ref_GRCh38_all.fa.gz
+wget -cvb -O $md_db_dir/ https://www.arb-silva.de/fileadmin/silva_databases/current/Exports/SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz
+wget -cvb -O $md_db_dir/ https://www.arb-silva.de/fileadmin/silva_databases/current/Exports/SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz
+zcat SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz > SILVA_138.2_LSU-SSURef_NR99_tax_silva.fasta && pigz SILVA_138.2_LSU-SSURef_NR99_tax_silva.fasta
+wget -cvb -O $md_db_dir/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz
 
 # Download and install MEGAN7
 # only download this once
@@ -61,6 +61,7 @@ cd $md_db_dir/taxdump/
 pigz -dc nucl_gb.accession2taxid.gz > nucl_gb.accession2taxid
 pigz -dc nucl_gb.accession2taxid.gz > prot.accession2taxid
 
-#bash $scripts/update_megan-map.db $md_db_dir/megan/megan-map-$(date +%d%b%y).mdb prot.accession2taxid
-#bash $scripts/update_megan-nucl.db $md_db_dir/megan/megan-nucl-$(date +%d%b%y).mdb prot.accession2taxid
+bash $scripts/update_megan-map.db $md_db_dir/megan/megan-map-$(date +%d%b%y).mdb prot.accession2taxid
+bash $scripts/update_megan-nucl.db $md_db_dir/megan/megan-nucl-$(date +%d%b%y).mdb prot.accession2taxid
+
 

@@ -9,7 +9,7 @@ This tool is primarily written with shell scripting and implemented for high per
 ## Files
 
  - The bin directory contains the scripts required to run the pipeline
- - This README and DATABASE_README should be followed prior to use of MetaDetector
+ - This README and databases/README should be followed prior to use of MetaDetector
  - The md.yml file is used to create the conda environment
 
 ## SLURM
@@ -24,15 +24,15 @@ Setting up the environment: \
  - If not already installed, Mamba can be installed here: https://conda-forge.org/download/
 
 Installing Databases:
- - Please refer to DATABASE_README for database installation
+ - Please refer to databases/README for database installation
  - The previous step, setting up the conda environment, must be completed prior to database installation
- - The steps outlined in the DATABASE_README should be followed and completed prior to completing any further steps in the README
+ - The steps outlined in the databases/README should be followed and completed prior to completing any further steps in the README
 
 Setting Paths:
  - Paths to various directories used in MetaDetector are saved in the `md.config` file
  - The md.config file should be located in the same directory as the scripts used to run MetaDetector
  - Generic paths are currently in the file, most of which to a "databases" directory and subdirectories, but you are free to organize this as you see fit
- - **NOTE**: Other scripts (helper, update, and database) have hard coded paths that will need to be manually modified
+ - **NOTE**: Other scripts (helper, update, and database) have hard-coded paths that will need to be manually modified
 
 ## Running MetaDetector
 #### Create a readlist:

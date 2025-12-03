@@ -15,6 +15,7 @@ conda activate md
 md_db_dir=/path/to/databases
 scripts=/path/to/update_scripts
 
-bash $scripts/update_megan-map.db $md_db_dir/megan/megan-map-$(date +%d%b%y).mdb prot.accession2taxid
-bash $scripts/update_megan-nucl.db $md_db_dir/megan/megan-nucl-$(date +%d%b%y).mdb prot.accession2taxid
+bash $scripts/update_megan-map-db.sh $md_db_dir/megan/megan-map-$(date +%d%b%y).mdb prot.accession2taxid
+bash $scripts/update_megan-nucl-db.sh $md_db_dir/megan/megan-nucl-$(date +%d%b%y).mdb prot.accession2taxid
+
 

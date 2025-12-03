@@ -16,14 +16,14 @@ bash download_NR_NT.sh
 ```
 
 ---
-### DIAMOND Databases
+### DIAMOND Database
 Diamond is a tool for accelerated BLAST jobs. This step that the NR database is listed above is fully downloaded.
 ```
 bash create_DIAMOND_db.sh
 ```
 
 ---
-### Download Taxdump
+### Taxdump
 The taxonomy file downloaded here are used to map taxonomic IDs in the NR and NT databases
 ```
 bash download_taxdump.sh

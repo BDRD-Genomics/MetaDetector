@@ -3,7 +3,7 @@
 ## Database Installation
 
 ### MEGAN
-MEGAN is a tool for visualization of taxonomic analysis. This script downloads and installs the software and required databases.
+MEGAN is a tool for visualization of taxonomic outputs. This script downloads and installs the software and required databases.
 ```
 bash download_MEGAN.sh
 ```

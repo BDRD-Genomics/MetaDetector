@@ -17,7 +17,8 @@ md_db_dir=/path/to/databases
 # Update NR and NT Commands:
 update_blastdb.pl --decompress nr && mv nr $md_db_dir/nr_$(date +%d%b%y)
 ln -sf $md_db_dir/nr_$(date +%d%b%y) $md_db_dir/nr
-update_blastdb.pl --decompress nt && mv nt $md_db_dir/nt_$(date +%d%b%y)
-ln -sf $md_db_dir/nt_$(date +%d%b%y) $md_db_dir/nt
+update_blastdb.pl --decompress core_nt && mv core_nt $md_db_dir/core_nt_$(date +%d%b%y)
+ln -sf $md_db_dir/core_nt_$(date +%d%b%y) $md_db_dir/core_nt
+
 
 

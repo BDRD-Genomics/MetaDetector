@@ -36,8 +36,8 @@ Setting Paths:
 
 ## Running MetaDetector
 #### Create a readlist:
- - Create a text file with paths to fastq files \
- `ls -d -w 1 /path/to/fastq/files/*.gz > project_id`
+ - Create a text file with paths to fastq files. For example: \
+ `ls -d -w 1 /path/to/fastq/files/*fastq.gz > /full/path/to/readlist`
  - Ex. A samplesheet containing reads from both illumina and minion sequencing platforms
  ```
  /path/to/Sample_A_R1.fastq.gz
@@ -60,11 +60,11 @@ Setting Paths:
 
 #### Run the pipeline:
  - Run MetaDetector on a set of illumina sequencing data:  
- `bash queue.sh -r readlist -o project_id `
+ `bash queue.sh -r /full/path/to/readlist -o /full/path/to/output_dir `
  - Run MetaDetector on a set of Minion sequencing data:  
- `bash queue.sh -r readlist -o project_id -j "l"`
+ `bash queue.sh -r /full/path/to/readlist -o /full/path/to/output_dir -j "l"`
  - Run MetaDetector on a mix of Illumina and Minion sequencing data and run in isolate mode:  
- `bash queue.sh -r readlist -o project_id -j "h" -a "i"`
+ `bash queue.sh -r /full/path/to/readlist -o /full/path/to/output_dir -j "h" -a "i"`
 
 ## Outputs
  - Primary outputs from MetaDetector are `[SampleName]_contigs.daa` and `[SampleName]_reads.daa` files. These files can be opened with Megan7 and further analysis may be performed there. 

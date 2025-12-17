@@ -3,7 +3,7 @@
 ## Summary
 
 MetaDetector is tool designed for identification and classification of metagenomic sequencing data. \
-This tool is primarily written with shell scripting and implemented for high performance computing clusters using SLURM workload manager. This README will provide the user with instructions for installation of proper tools and databases to run MetaDetector.
+This tool is primarily written with shell scripting and implemented for high performance computing clusters using SLURM workload manager. The README provides users with instructions for installation of proper tools and databases to run MetaDetector.
 
 
 ## Files
@@ -80,7 +80,7 @@ Setting Paths:
    - Status log files to bookmark successfully completed stages
 
 ## Disclaimer
-This work was supported by work unit number A1714.
+This work was supported by Navy Work Unit Number A1714.
 
 The views expressed in this article reflect the results of research conducted by the author and do not necessarily reflect the official policy or position of the Department of the Navy, Department of Defense, nor the U.S Government. Several authors are military service members or federal employees of the United States government.
 

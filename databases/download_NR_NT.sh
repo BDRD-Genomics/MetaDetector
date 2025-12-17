@@ -1,5 +1,5 @@
 #############################################################################
-# Author: Gregory Rice <gregory.k.rice.ctr@health.mil>
+# Contact: Reachback Support <usn.detrick.nmrc.mbx.genomics-reach-back@health.mil>
 # Additional Contact: Regina Cer <regina.z.cer.civ@health.mil>
 #
 # License:
@@ -19,6 +19,7 @@ update_blastdb.pl --decompress nr && mv nr $md_db_dir/nr_$(date +%d%b%y)
 ln -sf $md_db_dir/nr_$(date +%d%b%y) $md_db_dir/nr
 update_blastdb.pl --decompress core_nt && mv core_nt $md_db_dir/core_nt_$(date +%d%b%y)
 ln -sf $md_db_dir/core_nt_$(date +%d%b%y) $md_db_dir/core_nt
+
 
 
 

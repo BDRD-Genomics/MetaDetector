@@ -1,5 +1,5 @@
 #############################################################################
-# Author: Gregory Rice <gregory.k.rice.ctr@health.mil>
+# Contact: Reachback Support <usn.detrick.nmrc.mbx.genomics-reach-back@health.mil>
 # Additional Contact: Regina Cer <regina.z.cer.civ@health.mil>
 #
 # License:
@@ -24,3 +24,4 @@ wget -cvb -O $md_db_dir/silva/SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz https:/
 wget -cvb -O $md_db_dir/silva/SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz https://www.arb-silva.de/fileadmin/silva_databases/current/Exports/SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz
 
 zcat $md_db_dir/silva/SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz $md_db_dir/silva/SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz > $md_db_dir/silva/SILVA_138.2_LSU-SSURef_NR99_tax_silva.fasta && pigz $md_db_dir/silva/SILVA_138.2_LSU-SSURef_NR99_tax_silva.fasta
+

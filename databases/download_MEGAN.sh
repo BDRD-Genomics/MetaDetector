@@ -1,5 +1,5 @@
 #############################################################################
-# Author: Gregory Rice <gregory.k.rice.ctr@health.mil>
+# Contact: Reachback Support <usn.detrick.nmrc.mbx.genomics-reach-back@health.mil>
 # Additional Contact: Regina Cer <regina.z.cer.civ@health.mil>
 #
 # License:
@@ -25,4 +25,5 @@ ln -sf $md_db_dir/megan/megan-map-$(date +%d%b%y).mdb $md_db_dir/megan/megan-map
 wget -cvb -O $md_db_dir/megan/megan-genome-r1.zip https://software-ab.cs.uni-tuebingen.de/download/megan7/megan-genome-r1.zip
 unzip -d $md_db_dir/megan/ $md_db_dir/megan/megan-genome-r1.zip && mv $md_db_dir/megan/megan-genome-r1.mdb $md_db_dir/megan/megan-nucl-$(date +%d%b%y).mdb
 ln -sf $md_db_dir/megan/megan-nucl-$(date +%d%b%y).mdb $md_db_dir/megan/megan-nucl.mdb
+
 

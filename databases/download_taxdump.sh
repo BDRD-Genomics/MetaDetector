@@ -1,5 +1,5 @@
 #############################################################################
-# Author: Gregory Rice <gregory.k.rice.ctr@health.mil>
+# Contact: Reachback Support <usn.detrick.nmrc.mbx.genomics-reach-back@health.mil>
 # Additional Contact: Regina Cer <regina.z.cer.civ@health.mil>
 #
 # License:
@@ -21,4 +21,5 @@ wget -cvb -O $md_db_dir/taxdump/prot.accession2taxid.gz https://ftp.ncbi.nlm.nih
 cd $md_db_dir/taxdump/
 pigz -dc nucl_gb.accession2taxid.gz > nucl_gb.accession2taxid
 pigz -dc nucl_gb.accession2taxid.gz > prot.accession2taxid
+
 

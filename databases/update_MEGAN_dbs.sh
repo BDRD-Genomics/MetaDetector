@@ -1,5 +1,5 @@
 #############################################################################
-# Author: Gregory Rice <gregory.k.rice.ctr@health.mil>
+# Contact: Reachback Support <usn.detrick.nmrc.mbx.genomics-reach-back@health.mil>
 # Additional Contact: Regina Cer <regina.z.cer.civ@health.mil>
 #
 # License:
@@ -17,5 +17,6 @@ scripts=/path/to/update_scripts
 
 bash $scripts/update_megan-map-db.sh $md_db_dir/megan/megan-map-$(date +%d%b%y).mdb prot.accession2taxid
 bash $scripts/update_megan-nucl-db.sh $md_db_dir/megan/megan-nucl-$(date +%d%b%y).mdb prot.accession2taxid
+
 
 

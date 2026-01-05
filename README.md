@@ -7,6 +7,10 @@ This tool is primarily written with shell scripting and implemented for high per
 
 ![MetaDetector Visual](./MetaDetector_2APR2025.drawio.png)
 
+## FAQ
+
+Before proceeding with installation, we highly recommend reviewing our FAQ page [HERE](https://github.com/BDRD-Genomics/MetaDetector/wiki/FAQ#metadetector-faq)
+
 ## Files
 
  - The bin directory contains the scripts required to run the pipeline

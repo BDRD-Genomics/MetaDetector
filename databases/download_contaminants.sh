@@ -19,9 +19,10 @@ mkdir human silva
 
 wget -cvb -O $md_db_dir/human/GCF_000001405.40_GRCh38.p14_genomic.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
 
-wget -cvb -O $md_db_dir/silva/SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz https://www.arb-silva.de/fileadmin/silva_databases/current/Exports/SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz/Exports/SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz
+wget -cvb -O $md_db_dir/silva/SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz https://www.arb-silva.de/fileadmin/silva_databases/current/Exports/SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz
 
 wget -cvb -O $md_db_dir/silva/SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz https://www.arb-silva.de/fileadmin/silva_databases/current/Exports/SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz
 
 zcat $md_db_dir/silva/SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz $md_db_dir/silva/SILVA_138.2_LSURef_NR99_tax_silva.fasta.gz > $md_db_dir/silva/SILVA_138.2_LSU-SSURef_NR99_tax_silva.fasta && pigz $md_db_dir/silva/SILVA_138.2_LSU-SSURef_NR99_tax_silva.fasta
+
 

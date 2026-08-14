@@ -29,12 +29,6 @@ The MetaDetector Docker image is available from the GitHub Container Registry:
 docker pull ghcr.io/bdrd-genomics/metadetector:latest
 ```
 
-Optionally, tag the image locally as:
-
-```bash
-docker tag ghcr.io/bdrd-genomics/metadetector:latest metadetector:test
-```
-
 ### Install the Test Environment
 
 Run the installer to configure MetaDetector, download the required test databases and input data, and create the test runner:
@@ -44,7 +38,7 @@ Run the installer to configure MetaDetector, download the required test database
   --mode docker \
   --db-profile test \
   --root /data/MD_test \
-  --image metadetector:test \
+  --image ghcr.io/bdrd-genomics/metadetector:latest \
   --threads 26 \
   --memory 54 \
   --megan-mode download \

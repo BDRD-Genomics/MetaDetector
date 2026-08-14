@@ -17,6 +17,114 @@ Before proceeding with installation, we highly recommend reviewing our FAQ page 
  - This README and databases/README should be followed prior to use of MetaDetector
  - The md.yml file is used to create the conda environment
 
+## Docker
+
+MetaDetector can be run with Docker without requiring a local SLURM installation. The Docker image includes a lightweight local `sbatch` compatibility layer that allows the existing MetaDetector workflow to run inside the container.
+
+### Pull the Docker Image
+
+The MetaDetector Docker image is available from the GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/bdrd-genomics/metadetector:latest
+```
+
+Optionally, tag the image locally as:
+
+```bash
+docker tag ghcr.io/bdrd-genomics/metadetector:latest metadetector:test
+```
+
+### Install the Test Environment
+
+Run the installer to configure MetaDetector, download the required test databases and input data, and create the test runner:
+
+```bash
+./install.sh \
+  --mode docker \
+  --db-profile test \
+  --root /data/MD_test \
+  --image metadetector:test \
+  --threads 26 \
+  --memory 54 \
+  --megan-mode download \
+  --yes
+```
+
+The `test` database profile creates compact databases for testing where possible. MEGAN mapping databases are downloaded separately because they are required for the MEGAN classification stages.
+
+> **Note:** The `--root`, `--threads`, and `--memory` values can be changed to match the local system.
+
+### Run the Test
+
+After installation, run:
+
+```bash
+/data/MD_test/run_test.sh
+```
+
+The test runner executes the MetaDetector test workflow and reports stage completion directly in the terminal:
+
+```text
+============================================================
+ MetaDetector Test
+============================================================
+
+Starting MetaDetector...
+
+PASS  Stage 1   Input preparation
+PASS  Stage 2   Read QC / trimming
+PASS  Stage 3a  Host removal
+PASS  Stage 4   Contaminant removal
+PASS  Stage 5   rRNA removal
+PASS  Stage 6   Assembly
+PASS  Stage 9   Assembly processing
+PASS  Stage 12  DIAMOND contigs
+PASS  Stage 14  DIAMOND reads
+PASS  Stage 16  MMseqs nucleotide search
+PASS  Stage 17  MEGAN contigs
+PASS  Stage 19  MEGAN reads
+PASS  Stage 21  MEGAN nucleotide
+PASS  Stage 22  MetaQUAST
+PASS  Stage 25  Final QC
+
+============================================================
+ MetaDetector test: PASS
+============================================================
+Required stages:          15/15 PASS
+Final completion marker:   PASS
+Local scheduler jobs:      PASS
+DIAMOND DAA validation:    PASS
+```
+
+A successful test exits with status code `0`.
+
+Test results are written to:
+
+```text
+/data/MD_test/output/test_run
+```
+
+The detailed run log is written to:
+
+```text
+/data/MD_test/output/test_run/logs/run.log
+```
+
+### Re-running the Test
+
+To perform a clean test rerun without reinstalling the databases:
+
+```bash
+ROOT=/data/MD_test
+
+rm -rf "$ROOT/output/test_run"
+rm -rf "$ROOT/state/sbatch"
+mkdir -p "$ROOT/state/sbatch"
+
+"$ROOT/run_test.sh"
+```
+
 ## SLURM
  - MetaDetector is designed to be used with SLURM Workload Manager
  - SLURM installation instructions can be found here: https://slurm.schedmd.com/quickstart_admin.html 

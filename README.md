@@ -39,8 +39,8 @@ Run the installer to configure MetaDetector, download the required test database
   --db-profile test \
   --root /data/MD_test \
   --image ghcr.io/bdrd-genomics/metadetector:latest \
-  --threads 26 \
-  --memory 54 \
+  --threads 16 \
+  --memory 32 \
   --megan-mode download \
   --yes
 ```
@@ -104,6 +104,23 @@ The detailed run log is written to:
 ```text
 /data/MD_test/output/test_run/logs/run.log
 ```
+### Production Database Profile
+
+For a production installation, use the `md` database profile instead of `test`:
+
+```bash
+./install.sh \
+  --mode docker \
+  --db-profile md \
+  --root /data/MD \
+  --image ghcr.io/bdrd-genomics/metadetector:latest \
+  --threads 26 \
+  --memory 54 \
+  --megan-mode skip \
+  --yes
+```
+
+The production `md` profile is intended for the full MetaDetector database setup and requires substantially more storage ( > 1TB ) than the compact test profile.
 
 ### Re-running the Test
 

@@ -92,16 +92,16 @@ DIAMOND DAA validation:    PASS
 
 A successful test exits with status code `0`.
 
-Test results are written to:
+Test results are written to where you set:
 
 ```text
-/data/MD_test/output/test_run
+--root /data/MD_test
 ```
 
 The detailed run log is written to:
 
 ```text
-/data/MD_test/output/test_run/logs/run.log
+--root /data/MD_test/output/test_run/logs/run.log
 ```
 ### Production Database Profile
 

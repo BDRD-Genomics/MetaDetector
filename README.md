@@ -116,7 +116,6 @@ For a production installation, use the `md` database profile instead of `test`:
   --image ghcr.io/bdrd-genomics/metadetector:latest \
   --threads 26 \
   --memory 54 \
-  --megan-mode skip \
   --yes
 ```
 

@@ -41,6 +41,7 @@ Run the installer to configure MetaDetector, download the required test database
   --image ghcr.io/bdrd-genomics/metadetector:latest \
   --threads 16 \
   --memory 32 \
+  --megan-mode download \
   --yes
 ```
 

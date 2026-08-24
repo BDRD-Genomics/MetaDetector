@@ -91,18 +91,20 @@ do
 	count_samples+="$sample_name "
 	if [[ "$assembly_type" == "s" ]]
 	then
-		r1=(${outdir}/${sample_name}/${sample_name}_*[rR]1*)
-		r2=(${outdir}/${sample_name}/${sample_name}_*[rR]2*)
-		if [[ ! -s ${r1} ]] || [[ ! -s ${r2} ]]
-			then
-			echo -e "Copying ${sample} at $(timestamp)\n"
-			cp -rvL ${sample} ${outdir}/${sample_name}
-		fi
+		echo -e "Copying ${sample} at $(timestamp)\n"
+		cp -rvL "${sample}" "${outdir}/${sample_name}/"
 
-		if [ $(grep -ow $sample_name <<< ${count_samples[@]} | wc -l) = 2 ]
+		if [ $(grep -ow "$sample_name" <<< "${count_samples[@]}" | wc -l) = 2 ]
 		then
-			ln -rsf ${r1} ${outdir}/${sample_name}/${sample_name}_R1.fastq.gz 
-			ln -rsf ${r2} ${outdir}/${sample_name}/${sample_name}_R2.fastq.gz 
+			r1=(${outdir}/${sample_name}/${sample_name}_*[rR]1*)
+			r2=(${outdir}/${sample_name}/${sample_name}_*[rR]2*)
+
+			if [[ ! -s ${r1} ]] || [[ ! -s ${r2} ]]
+			then
+				echo "ERROR: unable to resolve paired reads for ${sample_name}" >&2
+				exit 1
+			fi
+
 			echo -e "Queueing ${sample_name} at $(timestamp)\n"
 			echo ${basedir}/proc_assembly.sh -r ${outdir}/${sample_name} -m "${memory}" -t "${threads}" "${aflag}" "${host_db_flag}" \
 				"${stages}" "${atype}" "${bbduk_opts_flag}" "${bbmap_opts_flag}"
@@ -125,25 +127,28 @@ do
 	fi
 	if [[ "$assembly_type" == "h" ]]
 	then
-		r=(${outdir}/${sample_name}/${sample_name}.fastq.gz)
-		r1=(${outdir}/${sample_name}/${sample_name}_*[rR]1*)
-		r2=(${outdir}/${sample_name}/${sample_name}_*[rR]2*)
-		if [[ ! -s ${r1} ]] || [[ ! -s ${r2} ]] || [[ ! -s ${r} ]]
-			then
-			echo -e "Copying ${sample} at $(timestamp)\n"
-			cp -rvL ${sample} ${outdir}/${sample_name}
-		fi
-		if [ $(grep -ow $sample_name <<< ${count_samples[@]} | wc -l) = 3 ]
+		echo -e "Copying ${sample} at $(timestamp)\n"
+		cp -rvL "${sample}" "${outdir}/${sample_name}/"
+
+		if [ "$(grep -ow "$sample_name" <<< "${count_samples[@]}" | wc -l)" = 3 ]
 		then
-			ln -rsf ${r1} ${outdir}/${sample_name}/${sample_name}_R1.fastq.gz 
-			ln -rsf ${r2} ${outdir}/${sample_name}/${sample_name}_R2.fastq.gz 
-			
+			r=(${outdir}/${sample_name}/${sample_name}.fastq.gz)
+			r1=(${outdir}/${sample_name}/${sample_name}_*[rR]1*)
+			r2=(${outdir}/${sample_name}/${sample_name}_*[rR]2*)
+
+			if [[ ! -s ${r1} ]] || [[ ! -s ${r2} ]] || [[ ! -s ${r} ]]
+			then
+				echo "ERROR: unable to resolve hybrid reads for ${sample_name}" >&2
+				exit 1
+			fi
+
 			echo -e "Queueing ${sample_name} at $(timestamp)\n"
+
 			echo ${basedir}/proc_assembly.sh -r ${outdir}/${sample_name} -m "${memory}" -t "${threads}" "${aflag}" "${atype}" "${host_db_flag}" "${bbmap_opts_flag}" "${stages}"
+
 			${basedir}/proc_assembly.sh -r ${outdir}/${sample_name} -m "${memory}" -t "${threads}" "${aflag}" "${atype}" "${host_db_flag}" "${bbmap_opts_flag}" "${stages}"
-			#echo ${outdir}/${sample_name}
 		fi
-	fi	
+	fi
 done
 echo -e "Input array = ${count_samples[@]}"
 echo -e "*** Finished at $(timestamp) ***"

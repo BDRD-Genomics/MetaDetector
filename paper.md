@@ -4,6 +4,10 @@ tags:
   - bioinformatics
   - metagenomics
   - taxonomy
+  - biosurveillance
+  - de novo assembly
+  - short-read-sequencing
+  - long-read sequencing
 authors:
 - family-names: "Rice"
   given-names: "Gregory K"
@@ -56,20 +60,22 @@ The development of MetaDetector was driven by the need for an efficient and modu
 
 MetaDetector performs as well as existing pipelines for metagenomic analysis, building the capacity for high performance in air gapped settings. To evaluate MetaDetector’s capacity to characterize challenging viral genomes using both short-read and hybrid sequencing data, we benchmarked it against four established tools: geNomad v1.8.0 (30), Chan Zuckerberg ID (CZID v6.0 (31, 32), Kraken2 v2.1.3 (33), and Mash v2.3 (34).
 Each tool selected for this benchmarking exercise represents a distinct methodological framework, and was executed using default parameters: 
-  - geNomad uses a predefined marker dataset to identify viruses and plasmids.
-  - CZID performs de novo short-read assembly via SPAdes (16), then classifies contigs via BLAST (35). 
-  - Kraken2 uses k-mer matching approach for classification of the lowest common ancestor (LCA).
-  - Mash screen estimates hash containment against RefSeq genome sketches.
+  - **geNomad** uses a predefined marker dataset to identify viruses and plasmids.
+  - **CZID** performs de novo short-read assembly via SPAdes (16), then classifies contigs via BLAST (35). 
+  - **Kraken2** uses k-mer matching approach for classification of the lowest common ancestor (LCA).
+  - **Mash** screen estimates hash containment against RefSeq genome sketches.
 
 Two datasets from NCBI’s Sequence Read Archive (SRA) were selected for benchmarking: 
   1. SRR10179613, Illumina short reads generated from a fruit bat body swab, selected to test sensitivity in detecting a low-abundance, recently discovered virus (Dawn bat paramyxovirus, DbPV) against a background of host and bacterial reads.  
   2. PRJNA587334, matched Oxford Nanopore MinION and Illumina MiSeq read sets generated from an mpox virus (MPXV) clinical isolate (29), selected to assess hybrid long/short read assembly and classification. Because CZID does not currently support hybrid assembly, only short reads were evaluated for that platform.
 
 ## Benchmarking Results
-`Table 1` summarizes the degree to which all evaluated tools identified the target species or a closely related near-neighbor. 
+[Table 1](#Table-1) summarizes the degree to which all evaluated tools identified the target species or a closely related near-neighbor. 
 - In the environmental bat-swab sample (Table 1A), MetaDetector classified the highest number of short reads (63 reads) and assembled a corresponding contig. geNomad resolved DbPV only to the family level (Paramyxoviridae), whereas MetaDetector, CZID, and Kraken2 achieved species-level resolution by identifying closely-related near-neighbor lineages.
 - All evaluated tools successfully classified Mpox virus in the hybrid assembly dataset (Table 1B). CZID and MetaDetector identified the highest number of MPXV reads, with 54,456 and 49,047 reads respectively. MetaDetector, CZID, and Kraken2 each produced comparable numbers of MPXV contigs (12, 13, and 9 contigs respectively).
 - These results demonstrate that MetaDetector’s sensitivity and taxonomic specificity are on par with existing state-of-the-art tools, while providing an offline-capable and customizable pipeline tailored for secure and hybrid metagenomic workflows.
+
+<a id="Table-1"></a>
 
 <i> **Table 1.** Summary of benchmarking results via MetaDetector, geNomad, CZID, kraken2, and mash.</i> \
 1A. Detection of DbPV

@@ -1,5 +1,5 @@
 ---
-title: 'MetaDetector: Secure, Air-Gapped Metagenomic Profiling for Tactical Biosurveillance'
+title: 'MetaDetector: Tactical Genomic Biosurveillance in Air-Gapped Environments'
 tags:
   - bioinformatics
   - metagenomics
@@ -45,15 +45,33 @@ bibliography: paper.bib
 
 # Summary
 
-MetaDetector is a versatile bioinformatic pipeline developed for complementary read- and contig-based classification of microbial sequences within complex metagenomic samples. Orchestrated by SLURM workload manager (1), the pipeline provides an end-to-end workflow that accepts both short-read (Illumina) and long-read (Oxford Nanopore, PacBio) sequencing data. It automates quality control (FastQC (2), BBDuk (3), fastp (4)), optional host sequence removal (BBMap (3), minimap2 (5)), de novo assembly (metaSPAdes (6), SPAdes (7), Unicycler (8), Dragonflye (9)), and taxonomic classification of both reads and contigs using DIAMOND (10) and MEGAN (11). The primary outputs, including DIAMOND alignment archive (.daa) files and simplified tabular summary files, provide a flexible and reproducible framework for processing large metagenomic datasets generated during biosurveillance activities.
+MetaDetector is a versatile bioinformatic pipeline developed for complementary read- and contig-based classification of microbial sequences within complex metagenomic samples. Orchestrated by Slurm workload manager (1), the pipeline provides an end-to-end workflow that accepts both short-read (Illumina) and long-read (Oxford Nanopore, PacBio) sequencing data. It automates quality control (FastQC (2), BBDuk (3), fastp (4)), optional host sequence removal (BBMap (3), minimap2 (5)), de novo assembly (metaSPAdes (6), SPAdes (7), Unicycler (8), Dragonflye (9)), and taxonomic classification of both reads and contigs using DIAMOND (10) and MEGAN (11). The primary outputs, including DIAMOND alignment archive (.daa) files and simplified tabular summary files, provide a flexible and reproducible framework for processing large metagenomic datasets generated during biosurveillance activities.
 
 # Statement of need
 
 The development of MetaDetector was driven by the need for an efficient and modular pipeline capable of handling diverse metagenomic datasets in secure, high-performance computing (HPC) environments with limited or no internet connectivity. Despite their capabilities, many contemporary pipelines are unsuitable for deployment in air-gapped settings. MetaDetector addresses this by packaging open-source tools into portable containers (Docker/Singularity) optimized for offline execution. Its modular architecture allows users to select appropriate assembly strategies for their data, while its use of both read- and contig-based classification provides a more comprehensive view of a sample's microbial content. MetaDetector reduces the manual effort required to process complex sequencing datasets and generate analysis-ready output. 
 
+
+# State of the field  
+
+MetaDetector performs as well as existing pipelines for metagenomic analysis, building the capacity for high performance in air gapped settings. To evaluate MetaDetector’s capacity to characterize challenging viral genomes using both short-read and hybrid sequencing data, we benchmarked it against four established tools: geNomad v1.8.0 (30), Chan Zuckerberg ID (CZID v6.0 (31, 32), Kraken2 v2.1.3 (33), and Mash v2.3 (34).
+Each tool selected for this benchmarking exercise represents a distinct methodological framework, and was executed using default parameters: 
+  - geNomad uses a predefined marker dataset to identify viruses and plasmids.
+  - CZID performs de novo short-read assembly via SPAdes (16), then classifies contigs via BLAST (35). 
+  - Kraken2 uses k-mer matching approach for classification of the lowest common ancestor (LCA).
+  - Mash screen estimates hash containment against RefSeq genome sketches.
+
+Two datasets from NCBI’s Sequence Read Archive (SRA) were selected for benchmarking: 
+  1. SRR10179613, Illumina short reads generated from a fruit bat body swab, selected to test sensitivity in detecting a low-abundance, recently discovered virus (Dawn bat paramyxovirus, DbPV) against a background of host and bacterial reads.  
+  2. PRJNA587334, matched Oxford Nanopore MinION and Illumina MiSeq read sets generated from an mpox virus (MPXV) clinical isolate (29), selected to assess hybrid long/short read assembly and classification. Because CZID does not currently support hybrid assembly, only short reads were evaluated for that platform.
+
 ## Benchmarking Results
-Table 1 summarizes the degree to which all evaluated tools identified the target species or a closely related near-neighbor. Table 1A, DbPV detection, shows that geNomad resolved DbPV only to the family level (Paramyxoviridae), whereas MetaDetector, CZID, and Kraken2 achieved species-level resolution by identifying closely-related near-neighbor lineages. MetaDetector classified the highest number of short reads (63 reads) and assembled a corresponding contig. Table 1B, Mpox virus hybrid assembly and classification, shows that all tools successfully classified MPXV. CZID and MetaDetector identified the highest number of MPXV reads (54,456 and 49,047 respectively). MetaDetector, CZID, and Kraken2 each produced comparable numbers of MPXV contigs( 12, 13, and 9 contigs respectively). These results demonstrate that MetaDetector’s sensitivity and taxonomic specificity are on par with existing state-of-the-art tools, while providing an offline-capable and customizable pipeline tailored for secure and hybrid metagenomic workflows.\
-Table 1. Summary of benchmarking results via MetaDetector, geNomad, CZID, kraken2, and mash. \
+`Table 1` summarizes the degree to which all evaluated tools identified the target species or a closely related near-neighbor. 
+- In the environmental bat-swab sample (Table 1A), MetaDetector classified the highest number of short reads (63 reads) and assembled a corresponding contig. geNomad resolved DbPV only to the family level (Paramyxoviridae), whereas MetaDetector, CZID, and Kraken2 achieved species-level resolution by identifying closely-related near-neighbor lineages.
+- All evaluated tools successfully classified Mpox virus in the hybrid assembly dataset (Table 1B). CZID and MetaDetector identified the highest number of MPXV reads, with 54,456 and 49,047 reads respectively. MetaDetector, CZID, and Kraken2 each produced comparable numbers of MPXV contigs (12, 13, and 9 contigs respectively).
+- These results demonstrate that MetaDetector’s sensitivity and taxonomic specificity are on par with existing state-of-the-art tools, while providing an offline-capable and customizable pipeline tailored for secure and hybrid metagenomic workflows.
+
+<i> **Table 1.** Summary of benchmarking results via MetaDetector, geNomad, CZID, kraken2, and mash.</i> \
 1A. Detection of DbPV
 | Tool | Specificity of DbPV detection | Specific assignment | # reads classified to lowest assignment | # contigs classified to lowest assignment |
 | --- | --- | --- | --- | --- |
@@ -72,31 +90,20 @@ Table 1. Summary of benchmarking results via MetaDetector, geNomad, CZID, kraken
 | kraken2 | high | MPXV (TaxID: 10244) | 35595 | 9 |
 | mash | high | MPXV (NC_063383) | n/a | n/a |
 
-
-# State of the field  
-
-MetaDetector performs as well as existing pipelines for metagenomic analysis, building the capacity for high performance in air gapped settings. To evaluate MetaDetector’s capacity to characterize challenging viral genomes using both short-read and hybrid sequencing data, we benchmarked it against four established tools: geNomad v1.8.0 (30), Chan Zuckerberg ID (CZID v6.0 (31, 32), Kraken2 v2.1.3 (33), and Mash v2.3 (34).
-Each tool represents a distinct methodological framework, executed using default parameters: 
-  - geNomad uses a predefined marker dataset to identify viruses and plasmids.
-  - CZID performs de novo short-read assembly via SPAdes (16), then classifies contigs via BLAST (35). 
-  - Kraken2 uses k-mer matching approach for classification of the lowest common ancestor (LCA).
-  - Mash screen estimates hash containment against RefSeq genomes.
-
-Two datasets from NCBI’s Sequence Read Archive (SRA) were selected for benchmarking: 
-  1. SRR10179613, Illumina short reads generated from a fruit bat body swab, selected to test sensitivity in detecting a low-abundance, recently discovered virus (Dawn bat paramyxovirus, DbPV) against a background of host and bacterial reads. 
-  2. PRJNA587334, matched Oxford Nanopore MinION and Illumina MiSeq read sets generated from an mpox virus (MPXV) clinical isolate (29), selected to assess hybrid long/short read assembly and classification. Because CZID does not currently support hybrid assembly, only short reads were evaluated for that platform. 
-
 # Software design
 The architecture of MetaDetector was designed to address three computational challenges inherent to unbiased biosurveillance and metagenomic characterization: handling large, high-throughput datasets (>10GB) with low viral target abundance (as low as ~0.0003%), integrating multi-platform sequencing input, and maintaining high performance within an air-gapped high-performance computing (HPC) environment. 
-  - Slurm workload manager was chosen over other frameworks to enable automated, multi-thread batch execution on on-premise HPC server clusters without external dependencies. 
+  - The Slurm workload manager was chosen over other frameworks to enable automated, multi-thread batch execution on on-premises HPC server clusters without external dependencies.  
   - Dual-platform input and preprocessing tools BBDuk/BBMap for Illumina and fastp/minimap2 for ONT/PacBio reads balance computational throughput with sequencing technology constraints to allow for automated trimming, host depletion, and rRNA/contaminant removal in single execution steps.
-  - Support of multiple assemblers (metaSPAdes, SPAdes, Unicycler, Dragonflye) with validation by mapping prioritizes contig accuracy over speed. Trimmed reads are mapped back to contigs using BBMap/minimap2 to verify assembly validity prior to classification.
+  - Support for multiple assemblers (metaSPAdes, SPAdes, Unicycler, Dragonflye), coupled with post-assembly read mapping prioritizes contig accuracy over raw processing speed. Trimmed reads are mapped back to contigs using BBMap/minimap2 to verify assembly validity prior to classification.
   - Taxonomic classification via Diamond BLASTX (NCBI NR) and MegaBLAST (NCBI core_nt) binned via MEGAN LCA prevents misclassification of divergent sequences by incorporating protein analysis while also suppressing false-positive calls via MEGAN’s weighted LCA algorithms.
 
 # Research impact statement
 
-In biosurveillance and military medical operations, sequencing often occurs in settings where cloud-only platforms are inaccessible. MetaDetector’s design prioritizes parameter modularity, enabling researchers to tune quality thresholds and assembler parameters depending on sample complexity, host genomic contribution, and compute limits, ultimately generating standardized MEGAN (.daa) and tabular outputs compatible with downstream visualization pipelines such as Pavian. MetaDetector has been adopted for routine use in five peer reviewed publications describing biosurveillance efforts (12-16). MetaDetector was implemented using Docker (45) to provide reach-back support and train 19 personnel at a U.S. Department of War laboratory overseas. Trainees were able to individually analyze a sample from long and short read data through identifying the organism(s) of interest and performed advanced characterization, including phylogenetic analysis, of the target organism(s).
+In biosurveillance and military medical operations, sequencing often occurs in settings where cloud-only platforms are inaccessible. MetaDetector’s design prioritizes parameter modularity, enabling researchers to tune quality thresholds and assembler parameters depending on sample complexity, host genomic contribution, and compute limits, ultimately generating standardized MEGAN (.daa) and tabular outputs compatible with downstream visualization pipelines such as Pavian. MetaDetector has been adopted for routine use in five peer reviewed publications describing biosurveillance efforts (12-16). MetaDetector was implemented using Docker (45) to provide reach back support and train 19 personnel at a U.S. Department of Defense laboratory overseas. Trainees were able to individually analyze a sample from long and short read data through identifying the organism(s) of interest and performed advanced characterization, including phylogenetic analysis, of the target organism(s).
 
+# Acknowledgements and Disclaimers
+This work was supported by Navy WUN A1417 and Global Emerging Infections Surveillance (GEIS) Branch ProMIS ID P0054_23_NM to KAB-L.
+The views expressed in this article are those of the authors and do not necessarily reflect the official policy or position of the Department of the Navy, Department of Defense, nor the U.S. Government. Some authors are employees of the U.S. Government. This work was prepared as part of their official duties. Title 17 U.S.C. §105 provides that “Copyright protection under this title is not available for any work of the United States Government”. Title 17 U.S.C. §101 defines a U.S. Government work as a work prepared by a military service member or employee of the U.S. Government as part of that person’s official duties.
 
 # AI usage disclosure
 
@@ -104,7 +111,7 @@ Generative AI was not used in any part of the software creation or documentation
 
 # Availability
 
-MetaDetector is available at https://github.com/BDRD-Genomics/MetaDetector. The repository includes comprehensive documentation, example data, and a minimal test profile to verify installation. To demonstrate the pipeline’s performance in a real-world scenario, we have included a case study in the documentation showing the successful detection of known viruses from publicly available datasets (SRR10179613, PRJNA587334) using both long and short reads. 
+MetaDetector is available at https://github.com/BDRD-Genomics/MetaDetector. The repository includes comprehensive documentation, example data, and a minimal test profile to verify installation. To demonstrate the pipeline’s performance in a real-world scenario, we have included a case study in the documentation showing the successful detection of known viruses from publicly available datasets (SRR10179613, PRJNA587334) using both long and short reads. 
 
 # References
 1.	Yoo AB, Jette MA, Grondona M. Slurm: Simple linux utility for resource management, p 44-60. In (ed),  Springer, 

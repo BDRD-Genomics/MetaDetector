@@ -203,8 +203,8 @@ Setting Paths:
    - Log output and error files 
    - Status log files to bookmark successfully completed stages
 
-## Contributing to VirusSeeker2.0
-Thank you for your interest in VirusSeeker2.0. This file tells you how to get help, how to report a problem, and how to send a change.
+## Contributing to MetaDetector
+Thank you for your interest in MetaDetector. This file tells you how to get help, how to report a problem, and how to send a change.
 
 ### Get help
 - Open a [Github Issue](https://github.com/BDRD-Genomics/MetaDetector/issues)

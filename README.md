@@ -203,6 +203,31 @@ Setting Paths:
    - Log output and error files 
    - Status log files to bookmark successfully completed stages
 
+## Contributing to VirusSeeker2.0
+Thank you for your interest in VirusSeeker2.0. This file tells you how to get help, how to report a problem, and how to send a change.
+
+### Get help
+- Open a [Github Issue](https://github.com/BDRD-Genomics/MetaDetector/issues)
+- For questions that you cannot ask in public, send an email to our reachback support: usn.detrick.nmrc.mbx.genomics-reach-back@health.mil
+
+### Report a bug
+Open a [GitHub issue](https://github.com/BDRD-Genomics/MetaDetector/issues/new/choose) with the **Bug report** template. Give this information:
+1. Detailed description of the issue
+2. The command that is being run
+3. Logging and error messages generated
+4. System configurations
+
+### Send a pull request
+1. Fork the repository, and make a branch from `main`.
+2. Keep each pull request to one change. Write a description that says what changes and why.
+3. Add or update the tests.
+4. Update the documentation when the behavior changes.
+5. Validate functionality of all changes.
+
+### License
+This project uses the [MIT License](LICENSE). When you send a contribution, you agree that it is licensed under the same terms.
+
+
 ## Disclaimer
 
 The views expressed in this work reflect the results of research conducted by the authors and do not necessarily reflect the official policy or position of the Department of the Navy, Department of Defense, nor the U.S Government. Several authors are military service members or federal employees of the United States government. This work was prepared as part of their official duties. Title 17 U.S.C. 105 provides that ‘copyright protection under this title is not available for any work of the United States Government.’ Title 17 U.S.C. 101 defines a U.S. Government work as work prepared by a military service member or employee of the U.S. Government as part of that person's official duties. This work was supported by Navy Work Unit Number A1714.
